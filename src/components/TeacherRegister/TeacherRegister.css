@@ -1,0 +1,10 @@
+.register-form{
+    width: 50%;
+    
+}
+.register-form__input{
+    margin: 1em;
+}
+.register-form__button{
+    margin: 1em;
+}
