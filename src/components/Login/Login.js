@@ -31,10 +31,10 @@ const Login = () => {
     
     }
     return (
-        <form className="Login" onSubmit={login}>
-            <Input type="text" onChange={e=>setName(e.target.value)} name="name" placeholder="Nombre" value={name} className="loginForm_input"/>
-            <Input type="email" onChange={e=>setEmail(e.target.value)} name="email" placeholder="Email" value={email} className="loginForm_input"/>
-            <Input type="password" onChange={e=>setPass(e.target.value)} name="password" placeholder="Contraseña" value={pass} className="loginForm_input"/>
+        <form className="Login-form" onSubmit={login}>
+            <Input type="text" onChange={e=>setName(e.target.value)} name="name" placeholder="Nombre" value={name} className="login-form_input"/>
+            <Input type="email" onChange={e=>setEmail(e.target.value)} name="email" placeholder="Email" value={email} className="login-form_input"/>
+            <Input type="password" onChange={e=>setPass(e.target.value)} name="password" placeholder="Contraseña" value={pass} className="login-form_input"/>
             <button type="submit" className="button">Enviar</button>
         </form>
     )

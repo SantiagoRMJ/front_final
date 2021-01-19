@@ -1,0 +1,10 @@
+.login-form{
+    width: 50%;
+    
+}
+.login-form__input{
+    margin: 1em;
+}
+.login-form__button{
+    margin: 1em;
+}
