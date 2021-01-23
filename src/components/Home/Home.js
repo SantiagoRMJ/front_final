@@ -8,12 +8,27 @@ import axios from 'axios';
 export default class Home extends Component {
     render() {
         return (
-            <div>
+            <>
+            <div className="nav-container">
                 <Link className="link" to="/profesor/registro">Registro de profesores</Link>
                  <Link className="link" to="/alumno/registro">Registro de alumnos</Link>
                  <Link className="link" to="/login">Login</Link>
                  <Link className="link" to="/fichas">Fichas</Link>
             </div>
+            <div className="home-body">
+                <h1>Bienvenid@ a Virtual HomeWork</h1>
+                <h2>Regístrate como profesor y comienza a a gestionar las tareas de tus alumnos con un par de clicks! </h2>
+                <h2>O regístrate como alumno para estar al día de las tareas de clase.</h2>
+            </div>
+            <body>
+                
+            </body>
+            </>
+
         )
     }
 }
+
+
+        
+    
