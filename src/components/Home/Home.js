@@ -13,7 +13,6 @@ export default class Home extends Component {
                 <Link className="link" to="/profesor/registro">Registro de profesores</Link>
                  <Link className="link" to="/alumno/registro">Registro de alumnos</Link>
                  <Link className="link" to="/login">Login</Link>
-                 <Link className="link" to="/fichas">Fichas</Link>
             </div>
             <div className="home-body">
                 <h1>Bienvenid@ a Virtual HomeWork</h1>

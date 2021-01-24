@@ -6,7 +6,9 @@ import CreateSheet from './components/CreateSheet/CreateSheet'
 import './App.css';
 import ShowSheets from './components/ShowSheets/ShowSheets'
 import LayoutTeacher from './components/LayoutTeacher/LayoutTeacher'
+import LayoutStudent from './components/LayoutStudent/LayoutStudent'
 import StudentRegister from './components/StudentRegister/StudentRegister'
+import StudentSheets from './components/StudentSheets/StudentSheets'
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
       <Route path="/profesor/fichas" exact component={CreateSheet}/>
       <Route path="/fichas" exact component={ShowSheets}/>
       <Route path="/profesor" exact component={LayoutTeacher}/>
+      <Route path="/alumno" exact component={LayoutStudent}/>
+      <Route path="/alumno/fichas" exact component={StudentSheets}/>
     </Switch>
   </Router>
   );

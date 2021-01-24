@@ -25,7 +25,7 @@ const formItemLayoutWithOutLabel = {
 
 const CreateSheet = () => {
   const onFinish = values => {
-    console.log(values.ejercicio[2]);
+    console.log(values);
   };
 
   return (

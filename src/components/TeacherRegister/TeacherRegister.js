@@ -24,12 +24,12 @@ const TeacherRegister = () => {
                 "name": form.name.value,
                 "email": form.email.value,
                 "pass": form.pass.value,
-                "classes": form.classes.value,
+                "class": form.class.value,
                 "grade": form.grade.value,
                 "subject": form.subject.value
         }
         console.log(User)
-        if(!User.email || !User.pass|| !User.name || User.classes || User.grade || User.subject){
+        if(!User.email || !User.pass|| !User.name || User.class || User.grade || User.subject){
             notification['error']({
                 message: "Todos los campos son obligatorios"
             })
@@ -70,8 +70,8 @@ const TeacherRegister = () => {
                 />     
                  <Input
                 type="text"
-                name="classes"
-                placeholder="clases"
+                name="class"
+                placeholder="clase"
                 className="register-form__input"
                 size="small"
                 />      

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Input, notification } from 'antd';
-//import './Login.css'
+import './Login.css'
 import { useHistory } from 'react-router-dom';
 
 import jwt_decode from "jwt-decode";
@@ -28,7 +28,9 @@ const Login = () => {
             if(user.role === "teacher") history.push('/profesor');
             if(user.role === "student") history.push('/alumno');
         } catch (error) {
-            console.error(error)
+            notification['error']({
+                message: "Datos introducidos incorrectos"
+            })
         }
     
     }
@@ -54,7 +56,7 @@ const Login = () => {
                  name="password" placeholder="Contraseña" 
                  value={pass} 
                  className="login-form_input"/>
-            <button type="submit" className="button">Enviar</button>
+            <button type="submit" className="login-form_button">Enviar</button>
         </form>
     )
 }
