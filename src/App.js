@@ -6,12 +6,14 @@ import CreateSheet from './components/CreateSheet/CreateSheet'
 import './App.css';
 import ShowSheets from './components/ShowSheets/ShowSheets'
 import LayoutTeacher from './components/LayoutTeacher/LayoutTeacher'
+import StudentRegister from './components/StudentRegister/StudentRegister'
 
 function App() {
   return (
     <Router>
     <Switch>
       <Route path="/profesor/registro" exact component={TeacherRegister}/>
+      <Route path="/alumno/registro" exact component={StudentRegister}/>
       <Route path="/login" exact component={Login}/>
       <Route path="/" exact component={Home}/>
       <Route path="/profesor/fichas" exact component={CreateSheet}/>
