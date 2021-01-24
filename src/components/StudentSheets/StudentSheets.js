@@ -31,7 +31,6 @@ import axios from 'axios'
             if(this.state.sheets[0]){
                 return(
                     this.state.sheets.map(sheet => {
-                        console.log("SHEET", sheet)
                         return(
                             <div className="home" key={token.id}>
                                 <a href={`http://localhost:3000/sheets/?=${token.id}`}> {sheet.title} </a>
@@ -43,10 +42,6 @@ import axios from 'axios'
                 return(<div>CARGANDO LOS DATOS.</div>)
             }   
         }
-  
-   
-     
-
     render() {
         return (
              <div className="sheets"> 

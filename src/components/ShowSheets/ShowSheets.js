@@ -21,7 +21,7 @@ import './ShowSheets.css'
                 console.log(err)
             }
         }   
-        sheets(){
+        showSheets(){
             if(this.state.sheets[0]){
                 return(
                     this.state.sheets.map(sheet => {

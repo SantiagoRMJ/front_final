@@ -1,33 +1,68 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-
-
+import axios from 'axios';
+import './LayoutStudent.css';
 
 
 
 export default class LayoutStudent extends Component {
+    constructor(props){
+        super(props)
+
+        this.state = {
+            class: '',
+            sheets: []
+        };
+    };
+    componentDidMount = async () => {
+        try {
+            const token = JSON.parse(localStorage.getItem('token'));
+            this.setState({class: token.class});
+            const mySheets = await axios.get(`http://localhost:3000/sheets/${token.id}`);
+            this.setState({sheets: mySheets.data.sheet});
+            
+        }catch(err){
+            console.log(err);
+        };
+    };
+    mySheets = () => {
+        if(this.state.sheets[0]){
+            return(
+                this.state.sheets.map(sheet => {
+                    return(
+                        <div className="body" key={sheet._id}>
+                            <Link onClick={() => this.clickSheet(sheet)}>{sheet.title}</Link> 
+                        </div>
+                    )
+                }))         
+        }else{
+            return(<div>No tienes fichas asignadas.</div>)
+        }; 
+    };
+    clickSheet = (sheet) => {
+        console.log(this.props)
+        this.props.history.push('/ficha');
+        localStorage.setItem('sheetData', JSON.stringify(sheet));
+    }
+
     render() {
         const token = JSON.parse(localStorage.getItem('token'))
 
         const logOut = () =>{
             localStorage.removeItem('token')
         }
-        
-        console.log(token.name)
+
         return (
             <>
             <div className="nav-container">
-                 <Link className="link" to="/alumno/fichas">Mis fichas</Link>
+                 <Link className="link" onClick={()=> this.mySheets()}>Mis fichas</Link>
                  <Link className="link" to="/" onClick={()=> logOut()}>Cerrar sesion</Link>
             </div>
-            <div className="home-body">
+            <div className="show-sheets">
                 <h1> Bienvenid@ {token.name}</h1>
-                <h2>Revisa tus fichas</h2>
-                <h3>Cuando completes la ficha tu profesor recibirá una notificación</h3>
+                <h2>Si tienes fichas asignadas apraeceran a continuación:</h2>
+                <Link>{this.mySheets()}</Link>
             </div>
-            <body>
-                
-            </body>
             </>
 
         )
