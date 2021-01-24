@@ -1,19 +1,25 @@
 import React from 'react'
-import {notification} from 'antd'
 import 'antd/dist/antd.css';
-import { Input } from 'antd';
+import { Input, Select, notification } from 'antd';
 import axios from 'axios'
 import {useHistory} from 'react-router-dom'
 import './TeacherRegister.css'
 
 const URL = "http://localhost:3000/teacher"
 
+const { Option } = Select;
+
+
 const TeacherRegister = () => {
     const history = useHistory()
+
+    
     const register = async (e) =>{        
         try{
         e.preventDefault()    
         const form = e.target
+        console.log(form)
+        
         const User = {
                 "name": form.name.value,
                 "email": form.email.value,
@@ -23,7 +29,7 @@ const TeacherRegister = () => {
                 "subject": form.subject.value
         }
         console.log(User)
-        if(!User.email || !User.pass|| !User.name){
+        if(!User.email || !User.pass|| !User.name || User.classes || User.grade || User.subject){
             notification['error']({
                 message: "Todos los campos son obligatorios"
             })
@@ -69,20 +75,28 @@ const TeacherRegister = () => {
                 className="register-form__input"
                 size="small"
                 />      
-                 <Input
-                type="text"
-                name="grade"
-                placeholder="curso"
-                className="register-form__input"
-                size="small"
-                />  
+              
                  <Input
                 type="text"
                 name="subject"
                 placeholder="asignaturas"
                 className="register-form__input"
                 size="small"
-                />                           
+                />    
+                <Select defaultValue="curso"
+                style={{ width: 120 }} 
+                className="register-form__input" 
+                name="grade"
+                type="text"
+                size="small">
+                    <Option value="1">1º</Option>
+                    <Option value="2">2º</Option>
+                    <Option value="3">3º</Option>
+                    <Option value="4">4º</Option>
+                    <Option value="5">5º</Option>
+                    <Option value="6">6º</Option>
+                </Select>  
+                <br/>                    
                 <button htmlType="submit" className="register-form__button">
                     crear cuenta
                 </button>

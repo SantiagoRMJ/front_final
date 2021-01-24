@@ -4,6 +4,8 @@ import Home from './components/Home/Home'
 import Login from './components/Login/Login'
 import CreateSheet from './components/CreateSheet/CreateSheet'
 import './App.css';
+import ShowSheets from './components/ShowSheets/ShowSheets'
+import LayoutTeacher from './components/LayoutTeacher/LayoutTeacher'
 
 function App() {
   return (
@@ -12,7 +14,9 @@ function App() {
       <Route path="/profesor/registro" exact component={TeacherRegister}/>
       <Route path="/login" exact component={Login}/>
       <Route path="/" exact component={Home}/>
-      <Route path="/profesor/sheet" exact component={CreateSheet}/>
+      <Route path="/profesor/fichas" exact component={CreateSheet}/>
+      <Route path="/fichas" exact component={ShowSheets}/>
+      <Route path="/profesor" exact component={LayoutTeacher}/>
     </Switch>
   </Router>
   );

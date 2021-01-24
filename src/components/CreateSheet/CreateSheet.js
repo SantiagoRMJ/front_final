@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Link} from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './CreateSheet.css';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button} from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 
 const formItemLayout = {
@@ -24,7 +25,7 @@ const formItemLayoutWithOutLabel = {
 
 const CreateSheet = () => {
   const onFinish = values => {
-    console.log(values);
+    console.log(values.ejercicio[2]);
   };
 
   return (
@@ -107,6 +108,7 @@ const CreateSheet = () => {
           Enviar
         </Button>
       </Form.Item>
+      <Link to="/profesor">atrás</Link>
     </Form>
   );
 };
