@@ -21,14 +21,13 @@ export default class LayoutTeacher extends Component {
             this.setState({class: token.class});
             const myStudents = await axios.get(`http://localhost:3000/student/${token.class}`);
             this.setState({students: myStudents.data.students});
-            
         }catch(err){
             console.log(err)
         }
     }   
     clickStudent = (student) => {
         console.log(this.props)
-        this.props.history.push('/profesor/alumnos');
+        this.props.history.push('/profesor/alumno');
         localStorage.setItem('studentData', JSON.stringify(student));
     }
 

@@ -10,7 +10,7 @@ import LayoutStudent from './components/LayoutStudent/LayoutStudent'
 import StudentRegister from './components/StudentRegister/StudentRegister'
 import StudentSheets from './components/StudentSheets/StudentSheets'
 import SheetDetail from './components/SheetDetail/SheetDetail'
-
+import StudentDetail from './components/StudentDetail/StudentDetail'
 function App() {
   return (
     <Router>
@@ -24,6 +24,7 @@ function App() {
       <Route path="/profesor" exact component={LayoutTeacher}/>
       <Route path="/profesor/registro" exact component={TeacherRegister}/>
       <Route path="/profesor/fichas" exact component={CreateSheet}/>
+      <Route path="/profesor/alumno" exact component={StudentDetail}/>
 
       <Route path="/alumno" exact component={LayoutStudent}/>
       <Route path="/alumno/fichas" exact component={StudentSheets}/>
