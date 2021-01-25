@@ -43,7 +43,7 @@ import './ShowSheets.css'
     render() {
         return (
              <div className="sheets"> 
-                 <div className="sheets_show" >{this.sheets()}</div>
+                 <div className="sheets_show" >{this.showSheets()}</div>
                  <Link to="/profesor">Volver</Link>
              </div>
              )

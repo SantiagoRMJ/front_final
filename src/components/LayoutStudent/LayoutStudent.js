@@ -26,9 +26,11 @@ export default class LayoutStudent extends Component {
         };
     };
     mySheets = () => {
+        console.log("THIS STATE",this.state.sheets)
         if(this.state.sheets[0]){
             return(
                 this.state.sheets.map(sheet => {
+                    if(sheet.status === false) 
                     return(
                         <div className="body" key={sheet._id}>
                             <Link onClick={() => this.clickSheet(sheet)}>{sheet.title}</Link> 
@@ -49,13 +51,12 @@ export default class LayoutStudent extends Component {
         const token = JSON.parse(localStorage.getItem('token'))
 
         const logOut = () =>{
-            localStorage.removeItem('token')
+            localStorage.clear()
         }
 
         return (
             <>
             <div className="nav-container">
-                 <Link className="link" onClick={()=> this.mySheets()}>Mis fichas</Link>
                  <Link className="link" to="/" onClick={()=> logOut()}>Cerrar sesion</Link>
             </div>
             <div className="show-sheets">

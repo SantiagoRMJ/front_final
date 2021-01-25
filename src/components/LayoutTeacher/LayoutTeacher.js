@@ -6,8 +6,6 @@ import './LayoutTeacher.css'
 
 
 
-
-
 export default class LayoutTeacher extends Component {
     constructor(props){
         super(props)
@@ -28,6 +26,11 @@ export default class LayoutTeacher extends Component {
             console.log(err)
         }
     }   
+    clickStudent = (student) => {
+        console.log(this.props)
+        this.props.history.push('/profesor/alumnos');
+        localStorage.setItem('studentData', JSON.stringify(student));
+    }
 
     myStudents = () => {
         if(this.state.students[0]){
@@ -35,7 +38,7 @@ export default class LayoutTeacher extends Component {
                 this.state.students.map(student => {
                     return(
                         <div className="body" key={student._id}>
-                            <h3>{student.name}</h3> 
+                            <Link onClick={() => this.clickStudent(student)}>{student.name}</Link> 
                         </div>
                     )
                 }))         
@@ -44,20 +47,7 @@ export default class LayoutTeacher extends Component {
         }   
     }
 
-    showSheets(){
-        if(this.state.sheets[0]){
-            return(
-                this.state.sheets.map(sheet => {
-                    return(
-                        <div className="body" key={sheet.id}>
-                            {sheet.title}
-                        </div>
-                    )
-                }))         
-        }else{
-            return(<div>CARGANDO LOS DATOS.</div>)
-        }   
-    }
+    
 
     render() {
 
@@ -69,7 +59,6 @@ export default class LayoutTeacher extends Component {
             <>
             <div className="nav-container">
                  <Link className="link" to="/profesor/fichas">Crear ficha</Link>
-                 <Link className="link" to="/fichas">Todas las Fichas</Link>
                  
                  <Link className="link" to="/" onClick={()=> logOut()}>Cerrar sesion</Link>
             </div>
