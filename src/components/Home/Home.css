@@ -8,7 +8,9 @@
     font-weight: bold;
 }
 
-
+.home-body{
+  margin-left: 3em;
+}
 .link{
     font-size: 26px;
     margin: 2em;

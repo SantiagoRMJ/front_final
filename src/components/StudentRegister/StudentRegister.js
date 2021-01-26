@@ -25,19 +25,22 @@ const StudentRegister = () => {
                 "class": form.class.value,
         }
         console.log(User.email, User.pass, User.name, User.class)
-       /* if(!User.email || !User.pass|| !User.name || User.class){
+        if(!User.email || !User.pass|| !User.name || !User.class){
            notification['error']({
                 message: "Todos los campos son obligatorios"
             })
             }else { 
-                */
+                
                     await axios.post(URL, User)
                     notification['success']({
                         message: "Usuario añadido correctamente"
                     })
                     history.push('/login')
-             // }    
+              }    
         } catch(error){
+            notification['error']({
+                message: "El email se encuentra registrado"
+            })
             console.error(error)
         }
     }

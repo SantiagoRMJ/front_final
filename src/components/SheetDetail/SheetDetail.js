@@ -1,5 +1,4 @@
-import {notification, Input} from 'antd'
-import {useHistory} from 'react-router-dom'
+import {notification, Input, Button} from 'antd'
 import axios from 'axios'
 import React, { Component } from 'react'
 
@@ -78,8 +77,8 @@ export default class SheetDetail extends Component {
             <form className="sheets" onSubmit={this.resolve} key={this.state.data.questions}>
                 
                 {this.showSheet()}
-                <button  htmlType="submit">enviar</button>
-                <button onClick={() => this.goBack()}>Atras</button>
+                <Button  htmlType="submit">enviar</Button>
+                <Button onClick={() => this.goBack()}>Atras</Button>
             </form>
                 
         )

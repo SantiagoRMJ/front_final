@@ -1,7 +1,7 @@
-import {notification, Input} from 'antd'
-import {useHistory} from 'react-router-dom'
-import axios from 'axios'
-import React, { Component } from 'react'
+import {Link} from 'react-router-dom';
+import axios from 'axios';
+import React, { Component } from 'react';
+import './StudentDetail.css'
 
 
 
@@ -11,65 +11,77 @@ export default class StudentDetail extends Component {
         this.state = {
             data: {},
             sheets: []
-        }
-        }
+        };
+        };
         componentDidMount = async () => {
             try{
-            const data = JSON.parse(localStorage.getItem('studentData'));
-            this.setState({data: data});
-            const sheets = await axios.get(`http://localhost:3000/sheets/${data._id}`) 
-            this.setState({sheets: sheets})
+                const data = JSON.parse(localStorage.getItem('studentData'));
+                const sheets = await axios.get(`http://localhost:3000/sheets/${data._id}`);
+                this.setState({data: data, sheets: sheets});
+                    
             }catch(err){
-                console.log(err)
+                console.log(err);
             }
         };
-        prueba = () =>{
+        capitalize = (s) => {
+            if (typeof s !== 'string') return '';
+            return s.charAt(0).toUpperCase() + s.slice(1);
+          }
 
-            console.log(this.state.sheets.data.sheet)
+        goBack =() => {
+            localStorage.removeItem('studentData');
+            this.props.history.push('/profesor');
         }
-       
-        showStudentSheets = async () =>{
-            console.log(this.state.sheets)
-            if(this.state.sheets.data.sheet[0]){
-                return(
-                    this.state.sheets.data.sheet.map(sheet => {
-                        return(
-                            <div className="body" key={sheet._id}>
-                                <div>{sheet.title}</div>
-                            </div>
-                        )
-                    }))         
-            }else{
-                return(<div>CARGANDO LOS DATOS.</div>)
-            }   
-
-        } 
+        clickSheet = (sheet) => {
+            localStorage.setItem('sheetData', JSON.stringify(sheet));
+        }
+        logOut = () =>{
+            localStorage.removeItem('token');
+            this.props.history.push('/')
+        }
         
-       
-        goBack(){
-            localStorage.removeItem('studentData')
-            this.props.history.push('/profesor')
-        }
-        showStudent = () => {
-            if(this.state.data?._id){
-                return(
-                    <div className="student">
-                        <div className="name"> {this.state.data.name} </div>
-                       
-                    </div>
-                )
-            }else return <div>CARGANDO</div>
+        pruebas(){
+            console.log("DATA", this.state.data)
+            console.log("SHEETS", this.state.sheets)
         }
     
+
     render(){
         return (
             
             <>
-                <div>{this.showStudent()}</div>
-                <div>{this.showStudentSheets()}</div>
-                <button onClick={() => this.goBack()}>Atras</button>
-                <button onClick={() => this.prueba()}>PRUEBA</button>
+                <div className="nav-container">
+                    <Link className="link" to="/profesor/fichas">Crear ficha</Link>
+                    <Link className="link" to="/" onClick={()=> this.logOut()}>Cerrar sesion</Link>
+                </div>
+
+                <div className="student">
+                    <div className="name"> {this.capitalize(this.state.data?.name)} </div>
                 
+                
+                {this.state.sheets?.data?.sheet?.map(sheet => {
+                    if(sheet.status === true){
+                        return(
+                            <div className="body" key={sheet._id}>
+                                <Link onClick={() => this.clickSheet(sheet)}
+                                      to="/profesor/alumno/correccion"  
+                                      style={{color: "green"}}>
+                                          {this.capitalize(sheet.title)}
+                                </Link>
+                            </div>
+                        )}
+                        else{
+                            return(
+                                <div className="body" key={sheet._id}>
+                                    <div style={{color: "red"}} >{this.capitalize(sheet.title)}</div>
+                                </div>
+                            )
+                        }
+                         })}
+                
+                <button onClick={() => this.goBack()}>Atras</button>
+                <button onClick={() => this.pruebas()}>PRUEBAS</button>
+                </div>
             </>
                 
         )
