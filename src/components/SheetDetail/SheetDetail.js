@@ -1,6 +1,8 @@
 import {notification, Input, Button} from 'antd'
 import axios from 'axios'
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import './SheetDetail.css'
 
 
 
@@ -24,21 +26,13 @@ export default class SheetDetail extends Component {
             e.preventDefault() 
             const data = JSON.parse(localStorage.getItem('sheetData'))
             const URL = `http://localhost:3000/sheets/${this.state.data._id}`
-            console.log(data)
-            console.log(e.target[0].value)
-
             for(let i = 0; i < e.target.length; i++){
                 this.state.answers.push((e.target[i].value))
             }
-            console.log(this.state.data)
-
             const answer = {
                 "answers": this.state.answers
             }
-            console.log(answer)
-            //console.log(e.target[i])
             await axios.patch(URL, answer)
-            console.log(answer)
             notification['success']({
                 message: "Ficha enviada!!"
             })
@@ -58,10 +52,9 @@ export default class SheetDetail extends Component {
                         <div className="area">{this.state.data.area} </div>
                         <div className="subject"> {this.state.data.subject} </div>
                         {this.state.data.questions.map(quest=>{
-                            console.log(quest)
                             return(
                             <>
-                            <div key={quest}>{quest}
+                            <div key={quest} className="quest">{quest}
                             <Input type="text"  placeholder="indique su respuesta"></Input>
                             </div>
                             </>
@@ -73,14 +66,20 @@ export default class SheetDetail extends Component {
     
     render(){
         return (
-            
-            <form className="sheets" onSubmit={this.resolve} key={this.state.data.questions}>
-                
-                {this.showSheet()}
-                <Button  htmlType="submit">enviar</Button>
-                <Button onClick={() => this.goBack()}>Atras</Button>
-            </form>
-                
+            <>
+            <div className="nav-container">
+                    <Link className="link" to="/" onClick={()=> this.goBack()}>Atras</Link>
+            </div>
+
+            <div className="form-container">
+                <form className="register-form" onSubmit={this.resolve} key={this.state.data.questions}>
+                    
+                    {this.showSheet()}
+                    <Button  className="sheet-button" htmlType="submit">Enviar</Button>
+                    <Button className="sheet-button" onClick={() => this.goBack()}>Atras</Button>
+                </form>
+            </div>  
+            </>  
         )
     }
 }

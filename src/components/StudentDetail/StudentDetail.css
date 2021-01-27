@@ -1,3 +1,10 @@
+.link{
+    font-family: 'Amatic SC', cursive;
+}
+.name{
+    font-family: 'Amatic SC', cursive;
+    font-size: 35px;
+}
 .student{
     margin-left: 3em;
 }

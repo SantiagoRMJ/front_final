@@ -1,4 +1,10 @@
+.form-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .register-form{
+    margin-top: 5em;
     width: 50%;
     
 }

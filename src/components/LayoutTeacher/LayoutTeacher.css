@@ -1,3 +1,14 @@
 .show-students{
+    font-size: 20px;
     margin-left: 3em;
+    font-family: 'Amatic SC', cursive;
+}
+.link{
+    font-family: 'Amatic SC', cursive;
+    font-size: 45px;
+    margin-top:1.9em;
+}
+.body{
+    font-family: 'Amatic SC', cursive;
+    font-size: 30px;
 }

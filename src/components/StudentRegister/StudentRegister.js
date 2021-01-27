@@ -1,6 +1,6 @@
 import React from 'react'
 import 'antd/dist/antd.css';
-import { Input, notification } from 'antd';
+import { Input, notification, Button, Form } from 'antd';
 import axios from 'axios'
 import {useHistory} from 'react-router-dom'
 import './StudentRegister.css'
@@ -24,7 +24,6 @@ const StudentRegister = () => {
                 "pass": form.pass.value,
                 "class": form.class.value,
         }
-        console.log(User.email, User.pass, User.name, User.class)
         if(!User.email || !User.pass|| !User.name || !User.class){
            notification['error']({
                 message: "Todos los campos son obligatorios"
@@ -46,7 +45,12 @@ const StudentRegister = () => {
     }
       
     return (
-        <form className="register-form" onSubmit={register}>
+        <>
+        <div className="nav-container">
+                    
+        </div>
+        <div className="form-container">
+        <Form className="register-form" onSubmit={register}>
                 <Input
                 type="text"
                 name="name"
@@ -55,7 +59,7 @@ const StudentRegister = () => {
                 size="small"
                 />                
                 <Input
-                type="text"
+                type="email"
                 name="email"
                 placeholder="Correo electronico"
                 className="register-form__input"
@@ -76,10 +80,15 @@ const StudentRegister = () => {
                 size="small"
                 />      
                                     
-                <button htmlType="submit" className="register-form__button">
+                <Button htmlType="submit" className="register-form__button">
                     crear cuenta
-                </button>
-        </form>
+                </Button>
+                <Button htmlType="submit" className="register-form__button" onClick={()=>{history.push('/')}}>
+                    Atrás
+                </Button>
+        </Form>
+        </div>
+        </>
     )
 }
 

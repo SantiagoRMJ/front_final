@@ -8,3 +8,20 @@
 .login-form_button{
     margin: 1em;
 }
+.login-form{
+    margin-top: 5em;
+    width: 50%;
+    
+}
+.login-button{
+    height: 32px;
+    padding: 4px 15px;
+    font-size: 14px;
+    border-radius: 2px;
+    color: rgba(0, 0, 0, 0.85);
+    background: #fff;
+    border-color: #d9d9d9;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
+    cursor: pointer;
+    border: 1px solid #d9d9d9;
+}

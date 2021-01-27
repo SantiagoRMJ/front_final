@@ -26,7 +26,6 @@ export default class LayoutStudent extends Component {
         };
     };
     mySheets = () => {
-        console.log("THIS STATE",this.state.sheets)
         if(this.state.sheets[0]){
             return(
                 this.state.sheets.map(sheet => {
@@ -37,12 +36,9 @@ export default class LayoutStudent extends Component {
                         </div>
                     )
                 }))         
-        }else{
-            return(<div>No tienes fichas asignadas.</div>)
-        }; 
+        }
     };
     clickSheet = (sheet) => {
-        console.log(this.props)
         this.props.history.push('/ficha');
         localStorage.setItem('sheetData', JSON.stringify(sheet));
     }

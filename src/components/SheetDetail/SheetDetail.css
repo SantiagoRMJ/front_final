@@ -1,0 +1,27 @@
+.resolve-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    height: 100vh;
+    width: 100vw;
+}
+.sheets{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sheet-button{
+    margin: 1em;
+}
+.area{
+    font-family: 'Amatic SC', cursive;
+    font-size: 3em;
+}
+.subject{
+    font-family: 'Amatic SC', cursive;
+    font-size: 2em;
+}
+.quest{
+    font-size: 2em;
+}

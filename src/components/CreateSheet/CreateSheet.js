@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {Link, useHistory} from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './CreateSheet.css';
-import { Form, Input, Button} from 'antd';
+import { Form, Input, Button, notification} from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import axios from 'axios';
 
@@ -44,9 +44,11 @@ const CreateSheet = () => {
         questions: values.ejercicio,
         teacher: token.id
     };
-    await axios.post('http://localhost:3000/sheets', sheet)
+    await axios.post('http://localhost:3000/sheets', sheet);
+    notification['success']({
+      message: "Ficha enviada correctamente!!!"
+    })
     history.push('/profesor')
-    console.log("SHEET", sheet);
         }catch(error){
             console.log(error)
         }
@@ -54,6 +56,7 @@ const CreateSheet = () => {
   
 
   return (
+    <div className="create-form-container">
     <Form name="dynamic_form_item" {...formItemLayoutWithOutLabel} onFinish={onFinish}>      
       <Form.List
         name="ejercicio"
@@ -69,8 +72,12 @@ const CreateSheet = () => {
       >
         {(fields, { add, remove }, { errors }) => (
           <>
+          <div className="nav-container">
+                 
+                 <Link className="link" to="/" onClick={()=> this.logOut()}>Cerrar sesion</Link>
+            </div>
           <Form.Item>
-          <p>Curso</p>  
+          <p className="curso">Curso</p>  
           <select style={{ width: '5%' }} defaultValue="1" onChange={e =>{setSelect(e)}}>
               <option value="1">1º</option>
               <option value="2">2º</option>
@@ -148,14 +155,13 @@ const CreateSheet = () => {
         )}
       </Form.List>
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button className="downButton" type="primary" htmlType="submit">
           Enviar
         </Button>
-      </Form.Item>
-      <Form.Item>
-      <Link to="/profesor">atrás</Link>
+        <Button className="downButton" onClick={() => history.push('/profesor')}>Atrás</Button>
       </Form.Item>
     </Form>
+    </div>
   );
 };
 

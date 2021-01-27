@@ -1,6 +1,7 @@
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import React, { Component } from 'react';
+import { Button } from 'antd'
 import './StudentDetail.css'
 
 
@@ -79,8 +80,7 @@ export default class StudentDetail extends Component {
                         }
                          })}
                 
-                <button onClick={() => this.goBack()}>Atras</button>
-                <button onClick={() => this.pruebas()}>PRUEBAS</button>
+                <Button onClick={() => this.goBack()}>Atras</Button>
                 </div>
             </>
                 

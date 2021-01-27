@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'antd/dist/antd.css';
-import { Input, Select, notification } from 'antd';
+import { Input, Select, notification, Button } from 'antd';
 import axios from 'axios'
 import {useHistory} from 'react-router-dom'
 import './TeacherRegister.css'
@@ -45,8 +45,16 @@ const TeacherRegister = () => {
             console.error(error)
         }
     }
+    const goBack = () => {
+        history.push('/')
+    }
       
     return (
+        <>
+        <div className="nav-container">
+                    
+        </div>
+        <div className="form-container">
         <form className="register-form" onSubmit={register}>
                 <Input
                 type="text"
@@ -56,7 +64,7 @@ const TeacherRegister = () => {
                 size="small"
                 />   {console.log("SELECT", select)}             
                 <Input
-                type="text"
+                type="email"
                 name="email"
                 placeholder="Correo electronico"
                 className="register-form__input"
@@ -72,7 +80,7 @@ const TeacherRegister = () => {
                  <Input
                 type="text"
                 name="class"
-                placeholder="clase"
+                placeholder="Clase"
                 className="register-form__input"
                 size="small"
                 />      
@@ -80,7 +88,7 @@ const TeacherRegister = () => {
                  <Input
                 type="text"
                 name="subject"
-                placeholder="asignaturas"
+                placeholder="Asignaturas"
                 className="register-form__input"
                 size="small"
                 />    
@@ -100,10 +108,15 @@ const TeacherRegister = () => {
                     <Option value="6">6º</Option>
                 </Select>  
                 <br/>                    
-                <button htmlType="submit" className="register-form__button">
-                    crear cuenta
-                </button>
+                <Button htmlType="submit" className="register-form__button">
+                    Crear cuenta
+                </Button>
+                <Button onClick={goBack} className="register-form__button">
+                    Atrás
+                </Button>
         </form>
+        </div>
+        </>
     )
 }
 

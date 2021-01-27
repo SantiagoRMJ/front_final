@@ -7,6 +7,10 @@
     color: #999;
     transition: all 0.3s;
   }
+  .name{
+    font-family: 'Amatic SC', cursive;
+  }
+
   .dynamic-delete-button:hover {
     color: #777;
   }

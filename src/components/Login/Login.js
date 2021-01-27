@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { Input, notification } from 'antd';
+import { Input, notification, Button } from 'antd';
 import './Login.css'
 import { useHistory } from 'react-router-dom';
 
@@ -19,8 +19,9 @@ const Login = () => {
             e.preventDefault();
             const post = await axios.post(URL, {name,email,pass})
             const user = jwt_decode(post.data.token)
+            const token = post.data.data
             localStorage.setItem('token', JSON.stringify(user))
-            console.log(user)
+            localStorage.setItem('code', JSON.stringify(token))
             notification['success']({
                 message: "Login correcto!"
             })
@@ -35,29 +36,34 @@ const Login = () => {
     
     }
     return (
-        <form className="Login-form" onSubmit={login}>
-            <Input
-                 type="text" 
-                 onChange={e=>setName(e.target.value)} 
-                 name="name" 
-                 placeholder="Nombre" 
-                 value={name} 
-                 className="login-form_input"/>
-            <Input 
-                 type="email" 
-                 onChange={e=>setEmail(e.target.value)} 
-                 name="email" 
-                 placeholder="Email" 
-                 value={email} 
-                 className="login-form_input"/>
-            <Input 
-                 type="password" 
-                 onChange={e=>setPass(e.target.value)} 
-                 name="password" placeholder="Contraseña" 
-                 value={pass} 
-                 className="login-form_input"/>
-            <button type="submit" className="login-form_button">Enviar</button>
-        </form>
+        <>
+        <div className="nav-container">
+                    
+        </div>
+        <div className="form-container">
+            <form className="login-form" onSubmit={login}>
+                <Input 
+                    type="email" 
+                    onChange={e=>setEmail(e.target.value)} 
+                    name="email" 
+                    placeholder="Email" 
+                    value={email} 
+                    className="login-form_input"/>
+                <Input 
+                    type="password" 
+                    onChange={e=>setPass(e.target.value)} 
+                    name="password" placeholder="Contraseña" 
+                    value={pass} 
+                    className="login-form_input"/>
+                <button type="submit" className="login-button">Enviar</button>
+                <Button type="submit"
+                className="login-form_button"
+                onClick={() => history.push('/')}>
+                    Atras
+                </Button>
+            </form>
+        </div>
+        </>
     )
 }
 

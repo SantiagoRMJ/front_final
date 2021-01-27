@@ -1,6 +1,8 @@
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import React, { Component } from 'react';
+import {Button} from 'antd';
+import './SheetCorrection.css';
 
 
 
@@ -48,12 +50,6 @@ export default class SheetCorrection extends Component {
             this.props.history.push('/')
         }
 
-        pruebas(){
-            console.log("DATA", this.state.data)
-            console.log("SHEET", this.state.sheet.answers)
-        }
-    
-
     render(){
         return (
             
@@ -65,21 +61,21 @@ export default class SheetCorrection extends Component {
 
                 <div className="student">
                     <div className="name"> {this.capitalize(this.state.data?.name)} </div>
-                    <h1>{this.state.sheet.title}</h1>
+                    <h1 className="title">{this.state.sheet.title}</h1>
                     {this.state.sheet?.questions?.map((quest, index)=>{
                         return(
                         <>
-                            <div key={quest}>
-                            <h3>{quest}</h3>
-                            <div>{this.state.sheet.answers[index]}</div>
+                            <div key={quest} className="quests-container">
+                            <h3 className="quests">{quest}</h3>
+                            <div className="answers">{this.state.sheet.answers[index]}</div>
                             </div>
                          </>
                          )})}
                 
 
                 
-                <button onClick={() => this.goBack()}>Atras</button>
-                <button onClick={() => this.removeSheet()}>Eliminar ficha</button>
+                <Button onClick={() => this.goBack()}>Atras</Button>
+                <Button onClick={() => this.removeSheet()}>Eliminar ficha</Button>
                 </div>
             </>
                 
