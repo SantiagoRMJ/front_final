@@ -36,9 +36,10 @@ export default class SheetCorrection extends Component {
         }
         removeSheet = async () => {
             try{
+            const token = JSON.parse(localStorage.getItem('token'));
             const sheet = JSON.parse(localStorage.getItem('sheetData'));
             const sheetId = sheet._id
-            await axios.delete(`http://localhost:3000/sheets/${sheetId}`);
+            await axios.delete(`https://back-easy-homework.herokuapp.com/sheets/${sheetId}`, {headers: {token}});
             this.props.history.push('/profesor/alumno');
             localStorage.removeItem('sheetData')
             }catch(err){
@@ -46,7 +47,7 @@ export default class SheetCorrection extends Component {
             }
         }
         logOut = () =>{
-            localStorage.removeItem('token');
+            localStorage.clear();
             this.props.history.push('/')
         }
 

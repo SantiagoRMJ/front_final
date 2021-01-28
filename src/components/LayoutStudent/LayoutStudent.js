@@ -16,9 +16,11 @@ export default class LayoutStudent extends Component {
     };
     componentDidMount = async () => {
         try {
+            const user = JSON.parse(localStorage.getItem('user'));
             const token = JSON.parse(localStorage.getItem('token'));
-            this.setState({class: token.class});
-            const mySheets = await axios.get(`http://localhost:3000/sheets/${token.id}`);
+            if(!token) this.props.history.push('/')
+            this.setState({class: user.class});
+            const mySheets = await axios.get(`https://back-easy-homework.herokuapp.com/sheets/${user._id}`, {headers: {token}});
             this.setState({sheets: mySheets.data.sheet});
             
         }catch(err){
@@ -44,7 +46,7 @@ export default class LayoutStudent extends Component {
     }
 
     render() {
-        const token = JSON.parse(localStorage.getItem('token'))
+        const user = JSON.parse(localStorage.getItem('user'))
 
         const logOut = () =>{
             localStorage.clear()
@@ -56,7 +58,7 @@ export default class LayoutStudent extends Component {
                  <Link className="link" to="/" onClick={()=> logOut()}>Cerrar sesion</Link>
             </div>
             <div className="show-sheets">
-                <h1> Bienvenid@ {token.name}</h1>
+                <h1> Bienvenid@ {user.name}</h1>
                 <h2>Si tienes fichas asignadas apraeceran a continuación:</h2>
                 <Link>{this.mySheets()}</Link>
             </div>

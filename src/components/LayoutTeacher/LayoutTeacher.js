@@ -17,18 +17,19 @@ export default class LayoutTeacher extends Component {
     }
     componentDidMount = async ()=>{
         try {
+            const user = JSON.parse(localStorage.getItem('user'));
             const token = JSON.parse(localStorage.getItem('token'));
-            this.setState({class: token.class});
-            const myStudents = await axios.get(`http://localhost:3000/student/${token.class}`);
+            this.setState({class: user.class});
+            const myStudents = await axios.get(`https://back-easy-homework.herokuapp.com/student/${user.class}`, {headers: {token}});
             this.setState({students: myStudents.data.students});
-            if(!token) this.props.history.push('/')
+            if(!user) this.props.history.push('/')
         }catch(err){
             console.log(err)
         }
     }
     logOut = () =>{
-        localStorage.removeItem('token');
-        this.props.history.push('/')
+        localStorage.clear();
+        this.props.history.push('/');
     }
     capitalize = (s) => {
         if (typeof s !== 'string') return ''
@@ -59,7 +60,7 @@ export default class LayoutTeacher extends Component {
     
 
     render() {
-        const token = JSON.parse(localStorage.getItem('token'))
+        const user = JSON.parse(localStorage.getItem('user'))
         return (
             <>
             <div className="nav-container">
@@ -69,7 +70,7 @@ export default class LayoutTeacher extends Component {
             </div>
             
             <div className="show-students">
-                <h1> Bienvenid@ {this.capitalize(token.name)}</h1>
+                <h1> Bienvenid@ {this.capitalize(user.name)}</h1>
                 <h2>Tus alumnos</h2>
                 <div className="students" >{this.myStudents()}</div>
             </div>

@@ -17,9 +17,10 @@ import axios from 'axios'
             localStorage.setItem('sheet', JSON.stringify(sheet));
         }
         async componentDidMount(){
-            const token = JSON.parse(localStorage.getItem('token'))
+            const user = JSON.parse(localStorage.getItem('user'))
+            const token = JSON.parse(localStorage.getItem('token'));
             try {
-                const mySheets = await axios.get(`http://localhost:3000/sheets/?=${token.id}`);
+                const mySheets = await axios.get(`https://back-easy-homework.herokuapp.com/sheets/?=${user.id}`, {headers:{token}});
                 console.log("MYSHEETS.DATA", mySheets.data);
                 this.setState({sheets: mySheets.data});
             }catch(err){
@@ -27,13 +28,13 @@ import axios from 'axios'
             }
         }   
         sheets(){
-            const token = JSON.parse(localStorage.getItem('token'))
+            const user = JSON.parse(localStorage.getItem('user'))
             if(this.state.sheets[0]){
                 return(
                     this.state.sheets.map(sheet => {
                         return(
-                            <div className="home" key={token.id}>
-                                <a href={`http://localhost:3000/sheets/?=${token.id}`}> {sheet.title} </a>
+                            <div className="home" key={user.id}>
+                                <a href={`https://back-easy-homework.herokuapp.com//sheets/?=${user.id}`}> {sheet.title} </a>
                             </div>
                         
                         )

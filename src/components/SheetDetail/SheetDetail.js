@@ -24,15 +24,15 @@ export default class SheetDetail extends Component {
         resolve = async (e) => {
             try{
             e.preventDefault() 
-            const data = JSON.parse(localStorage.getItem('sheetData'))
-            const URL = `http://localhost:3000/sheets/${this.state.data._id}`
+            const token = JSON.parse(localStorage.getItem('token'));
+            const URL = `https://back-easy-homework.herokuapp.com/sheets/${this.state.data._id}`
             for(let i = 0; i < e.target.length; i++){
                 this.state.answers.push((e.target[i].value))
             }
             const answer = {
                 "answers": this.state.answers
             }
-            await axios.patch(URL, answer)
+            await axios.patch(URL, answer, {headers:{token}})
             notification['success']({
                 message: "Ficha enviada!!"
             })

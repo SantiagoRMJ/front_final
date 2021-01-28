@@ -14,8 +14,7 @@ import './ShowSheets.css'
     
         async componentDidMount(){
             try {
-                const allSheets = await axios.get('http://localhost:3000/sheets');
-                console.log(allSheets.data);
+                const allSheets = await axios.get('https://back-easy-homework.herokuapp.com/sheets');
                 this.setState({sheets: allSheets.data});
             }catch(err){
                 console.log(err)

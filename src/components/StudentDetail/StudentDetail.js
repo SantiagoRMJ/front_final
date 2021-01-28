@@ -17,7 +17,8 @@ export default class StudentDetail extends Component {
         componentDidMount = async () => {
             try{
                 const data = JSON.parse(localStorage.getItem('studentData'));
-                const sheets = await axios.get(`http://localhost:3000/sheets/${data._id}`);
+                const token = JSON.parse(localStorage.getItem('token'));
+                const sheets = await axios.get(`https://back-easy-homework.herokuapp.com/sheets/${data._id}`, {headers: {token}});
                 this.setState({data: data, sheets: sheets});
                     
             }catch(err){

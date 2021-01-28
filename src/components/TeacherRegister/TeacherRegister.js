@@ -6,7 +6,7 @@ import {useHistory} from 'react-router-dom'
 import './TeacherRegister.css'
 
 
-const URL = "http://localhost:3000/teacher"
+const URL = "https://back-easy-homework.herokuapp.com/teacher"
 
 const { Option } = Select;
 
@@ -35,7 +35,7 @@ const TeacherRegister = () => {
                 message: "Todos los campos son obligatorios"
             })
             }else {
-                    await axios.post("http://localhost:3000/teacher", User)
+                    await axios.post("https://back-easy-homework.herokuapp.com/teacher", User)
                     notification['success']({
                         message: "Usuario añadido correctamente"
                     })

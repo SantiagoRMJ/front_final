@@ -33,8 +33,8 @@ const CreateSheet = () => {
 
   const onFinish = async values => {
       try{
+    const user = JSON.parse(localStorage.getItem('user'));
     const token = JSON.parse(localStorage.getItem('token'));
-    console.log("TOKEN", token.id)
     console.log(values.ejercicio, select.target.value, inputSubject.target.value, inputArea.target.value, inputTitle.target.value);
     const sheet = {
         subject: inputSubject.target.value,
@@ -42,9 +42,9 @@ const CreateSheet = () => {
         area: inputArea.target.value,
         title: inputTitle.target.value,
         questions: values.ejercicio,
-        teacher: token.id
+        teacher: user._id
     };
-    await axios.post('http://localhost:3000/sheets', sheet);
+    await axios.post('https://back-easy-homework.herokuapp.com/sheets', sheet, {headers:{token}});
     notification['success']({
       message: "Ficha enviada correctamente!!!"
     })

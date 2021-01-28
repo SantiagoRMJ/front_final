@@ -4,24 +4,25 @@ import { Input, notification, Button } from 'antd';
 import './Login.css'
 import { useHistory } from 'react-router-dom';
 
-import jwt_decode from "jwt-decode";
+
 
 
 
 const Login = () => {
-    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
-    const URL = 'http://localhost:3000/login'
+    const URL = 'https://back-easy-homework.herokuapp.com/login'
     const history = useHistory();
     const login = async (e) => {
         try {
             e.preventDefault();
-            const post = await axios.post(URL, {name,email,pass})
-            const user = jwt_decode(post.data.token)
-            const token = post.data.data
-            localStorage.setItem('token', JSON.stringify(user))
-            localStorage.setItem('code', JSON.stringify(token))
+            const post = await axios.post(URL, {email,pass})
+            const user = post.data.data
+            const token = post.data.token
+            localStorage.setItem('user', JSON.stringify(user))
+
+            console.log("user:", user, "token:", token)
+            localStorage.setItem('token', JSON.stringify(token))
             notification['success']({
                 message: "Login correcto!"
             })
