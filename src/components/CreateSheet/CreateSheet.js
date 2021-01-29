@@ -53,7 +53,10 @@ const CreateSheet = () => {
             console.log(error)
         }
   };
-  
+  const logOut = () =>{
+    localStorage.clear();
+    history.push('/');
+  }
 
   return (
     <div className="create-form-container">
@@ -74,7 +77,7 @@ const CreateSheet = () => {
           <>
           <div className="nav-container">
                  
-                 <Link className="link" to="/" onClick={()=> this.logOut()}>Cerrar sesion</Link>
+                 <Link className="link" to="/" onClick={()=> logOut()}>Cerrar sesion</Link>
             </div>
           <Form.Item>
           <p className="curso">Curso</p>  

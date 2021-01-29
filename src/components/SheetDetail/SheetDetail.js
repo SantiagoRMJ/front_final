@@ -68,7 +68,7 @@ export default class SheetDetail extends Component {
         return (
             <>
             <div className="nav-container">
-                    <Link className="link" to="/" onClick={()=> this.goBack()}>Atras</Link>
+                    <Link className="link" to="/alumno" onClick={()=> this.goBack()}>Atras</Link>
             </div>
 
             <div className="form-container">
