@@ -55,7 +55,7 @@ export default class SheetDetail extends Component {
                             return(
                             <>
                             <div key={quest} className="quest">{quest}
-                            <Input type="text"  placeholder="indique su respuesta"></Input>
+                            <Input type="text"  placeholder="Indique su respuesta"></Input>
                             </div>
                             </>
                         )})}
