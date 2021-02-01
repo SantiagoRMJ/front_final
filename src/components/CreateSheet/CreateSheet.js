@@ -133,7 +133,7 @@ const CreateSheet = () => {
                   noStyle
                 >
                     
-                  <Input placeholder="ejercicio" style={{ width: '80%' }} />
+                  <Input placeholder="Ejercicio" style={{ width: '80%' }} />
                 </Form.Item>
                 {fields.length > 1 ? (
                   <MinusCircleOutlined

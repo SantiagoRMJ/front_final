@@ -2,7 +2,10 @@
     font-size: 20px;
     margin-left: 3em;
     font-family: 'Amatic SC', cursive;
+    width: 50%;
 }
+
+
 .link{
     font-family: 'Amatic SC', cursive;
     font-size: 45px;

@@ -68,12 +68,13 @@ export default class LayoutTeacher extends Component {
                  
                  <Link className="link" to="/" onClick={()=> this.logOut()}>Cerrar sesion</Link>
             </div>
-            
             <div className="show-students">
                 <h1> Bienvenid@ {this.capitalize(user.name)}</h1>
                 <h2>Tus alumnos</h2>
                 <div className="students" >{this.myStudents()}</div>
             </div>
+           
+            
         
             </>
 
